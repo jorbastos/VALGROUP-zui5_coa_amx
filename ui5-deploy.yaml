@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: valgroup.com.zui5coaamx
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: https://appdesenv.valgroupco.com/
+          client: '100'
+        app:
+          name: ZUI5_COA_AMX
+          description: Version 1.0
+          package: ZQM_COA_AMX
+          transport: S4DK946838
+        exclude:
+          - /test/

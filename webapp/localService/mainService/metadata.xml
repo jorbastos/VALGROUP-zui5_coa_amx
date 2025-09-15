@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://appdesenv.valgroupco.com/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://appdesenv.valgroupco.com/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://appdesenv.valgroupco.com/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://appdesenv.valgroupco.com/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://appdesenv.valgroupco.com/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://appdesenv.valgroupco.com/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://appdesenv.valgroupco.com/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://appdesenv.valgroupco.com/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://appdesenv.valgroupco.com/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="cds_zqmui_coa_amx" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="C_ChgMgmtPlantVHType" sap:label="Administração de modificações - entradas possíveis de centro" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="PlantName" sap:label="Centro"/>
+                <Property Name="PlantName" Type="Edm.String" MaxLength="30" sap:label="Nome do centro"/>
+            </EntityType>
+            <EntityType Name="C_QM_DelivDocVHType" sap:label="Entradas possíveis para documento de remessa" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DeliveryDocument"/>
+                </Key>
+                <Property Name="DeliveryDocument" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Remessa"/>
+                <Property Name="ShippingPoint" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Local expedição" sap:quickinfo="Local de expedição/ponto de recebimento"/>
+                <Property Name="ShipToParty" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Recebedor mercadoria" sap:value-list="standard"/>
+                <Property Name="DeliveryDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data remessa"/>
+            </EntityType>
+            <EntityType Name="F_Mmim_Mathlp_VhType" sap:label="Visão de ajuda para material" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Nº do material"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Tipo de material"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Grupo de mercadorias"/>
+                <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Grupo de autorizações"/>
+                <Property Name="MaterialIsBatchManaged" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Material é administrado em lotes" sap:quickinfo="Indicador necessidade administração lotes"/>
+                <Property Name="MaterialBaseUnit" Type="Edm.String" MaxLength="3" sap:label="Unidade de medida básica de material" sap:quickinfo="Unidade de medida básica" sap:semantics="unit-of-measure"/>
+            </EntityType>
+            <EntityType Name="I_BatchType" sap:label="Informação de lote" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                    <PropertyRef Name="Material"/>
+                    <PropertyRef Name="Batch"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Centro"/>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Nº do material" sap:value-list="standard"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Lote" sap:quickinfo="Número do lote"/>
+                <Property Name="BatchIsMarkedForDeletion" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Marc.p/elim.lote" sap:quickinfo="Marcação para eliminar todos os dados de um lote"/>
+                <Property Name="MatlBatchIsInRstrcdUseStock" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Lote não livre" sap:quickinfo="Lote no estoque com utilização restrita"/>
+                <Property Name="Supplier" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Fornecedor" sap:quickinfo="Nº conta do fornecedor" sap:value-list="standard"/>
+                <Property Name="BatchBySupplier" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Lote do fornecedor" sap:quickinfo="Nº do lote fornecedor"/>
+                <Property Name="CountryOfOrigin" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="País de origem" sap:quickinfo="País de origem do material (origem CCI)"/>
+                <Property Name="RegionOfOrigin" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Região de origem" sap:quickinfo="Região de origem do material (origem Câm.Ind.e Comércio)"/>
+                <Property Name="MatlBatchAvailabilityDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Disponível desde" sap:quickinfo="Data de disponibilidade"/>
+                <Property Name="ShelfLifeExpirationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data do vencimento"/>
+                <Property Name="ManufactureDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data de produção"/>
+                <Property Name="NextInspectionDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Dt.controle seguinte" sap:quickinfo="Data de controle seguinte"/>
+                <Property Name="LastGoodsReceiptDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Última EM" sap:quickinfo="Data da última entrada de mercadoria"/>
+                <Property Name="FreeDefinedDate1" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data p/utilz.livre 1" sap:quickinfo="Data para utilização livre 1"/>
+                <Property Name="FreeDefinedDate2" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data p/utilz.livre 2" sap:quickinfo="Data para utilização livre 2"/>
+                <Property Name="FreeDefinedDate3" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data p/utilz.livre 3" sap:quickinfo="Data para utilização livre 3"/>
+                <Property Name="FreeDefinedDate4" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data p/utilz.livre 4" sap:quickinfo="Data para utilização livre 4"/>
+                <Property Name="FreeDefinedDate5" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data p/utilz.livre 5" sap:quickinfo="Data para utilização livre 5"/>
+                <Property Name="FreeDefinedDate6" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data p/utilz.livre 6" sap:quickinfo="Data para utilização livre 6"/>
+                <Property Name="DefinitionOfBatchLevel" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Definição lote" sap:quickinfo="Definição do nível da administração de lotes"/>
+                <Property Name="IsSubordinateBatch" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="É lote subordinado" sap:quickinfo="Lote subordinado"/>
+                <Property Name="BatchIdentifyingPlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Centro"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Criado em" sap:quickinfo="Criado em registro da hora"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Última modificação" sap:quickinfo="Registro da hora da última modificação"/>
+                <Property Name="ClfnObjectInternalID" Type="Edm.String" MaxLength="18" sap:display-format="NonNegative" sap:label="Nº interno do objeto" sap:quickinfo="Nº interno do objeto - classificação de lotes"/>
+                <Property Name="BatchExtWhseMgmtInternalId" Type="Edm.Guid" sap:label="ID do lote"/>
+                <Property Name="StockSegment" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Segmento de estoque"/>
+                <Property Name="ExportAndImportProductGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Grupo Intrastat" sap:quickinfo="Grupo de mercadorias para Intrastat"/>
+                <Property Name="InventoryValuationType" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Tipo de avaliação"/>
+            </EntityType>
+            <EntityType Name="I_BillingDocumentBasicStdVHType" sap:label="Documento de faturamento básico" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="BillingDocument"/>
+                </Key>
+                <Property Name="BillingDocument" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Doc.faturamento" sap:quickinfo="Documento de faturamento"/>
+            </EntityType>
+            <EntityType Name="I_BR_NFAdministration_CType" sap:label="Dados administrativos de documento de nota fiscal" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="BR_NotaFiscal"/>
+                </Key>
+                <Property Name="BR_NotaFiscal" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="Nº documento"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Usuário" sap:quickinfo="Usuário que criou o documento"/>
+                <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data" sap:quickinfo="Data de criação do documento"/>
+                <Property Name="CreationTime" Type="Edm.Time" Precision="0" sap:label="Hora" sap:quickinfo="Hora de criação documento"/>
+                <Property Name="LogicalSystem" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Sistema lógico"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Usuário" sap:quickinfo="Usuário que efetuou a última modificação no documento"/>
+                <Property Name="LastChangeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data" sap:quickinfo="Data de modificação do documento"/>
+                <Property Name="LastChangeTime" Type="Edm.Time" Precision="0" sap:label="Hora" sap:quickinfo="Hora da última modificação do documento"/>
+                <Property Name="BR_NFIsPrinted" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="A nota fiscal foi impressa"/>
+                <Property Name="BR_NFIsCreatedManually" Type="Edm.Boolean" sap:label="Criado manualmente"/>
+                <Property Name="BR_NFIsCanceled" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Nota fiscal cancelada"/>
+                <Property Name="BR_NFIsChargingInvoice" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Fatura de cobrança" sap:quickinfo="A NF é uma fatura"/>
+                <Property Name="BR_NFDirection" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Direção de movimento"/>
+                <Property Name="BR_NFType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Tipo de nota fiscal"/>
+                <Property Name="BR_NFTypeDesc" Type="Edm.String" MaxLength="65" sap:display-format="UpperCase" sap:label="Descrição de tipo de nota fiscal"/>
+                <Property Name="BR_NFModel" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Modelo nota fiscal" sap:quickinfo="Modelo da nota fiscal"/>
+                <Property Name="BR_NFSituationCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Cód.sit.doc." sap:quickinfo="Código da situação do documento fiscal"/>
+                <Property Name="BR_NFIssuedBy" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Nota fiscal emitida por"/>
+                <Property Name="BR_NFReferenceDocument" Type="Edm.String" MaxLength="10"/>
+                <Property Name="BR_NFHasFollowOnDocument" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Doc.subsequente" sap:quickinfo="Documento subsequente"/>
+            </EntityType>
+            <EntityType Name="I_Customer_VHType" sap:label="Cliente" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customer"/>
+                </Key>
+                <Property Name="Customer" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:text="CustomerName" sap:label="Cliente" sap:quickinfo="Nº cliente"/>
+                <Property Name="OrganizationBPName1" Type="Edm.String" MaxLength="35" sap:label="Nome 1"/>
+                <Property Name="OrganizationBPName2" Type="Edm.String" MaxLength="35" sap:label="Nome 2"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="País" sap:quickinfo="Chave do país"/>
+                <Property Name="CityName" Type="Edm.String" MaxLength="35" sap:label="Cidade" sap:quickinfo="Local"/>
+                <Property Name="StreetName" Type="Edm.String" MaxLength="35" sap:label="Rua" sap:quickinfo="Rua e nº"/>
+                <Property Name="CustomerName" Type="Edm.String" MaxLength="80" sap:label="Nome do cliente"/>
+                <Property Name="CustomerAccountGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Grupo de contas" sap:quickinfo="Grupo de contas do cliente"/>
+                <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Autorização" sap:quickinfo="Grupo autorizações"/>
+                <Property Name="IsBusinessPurposeCompleted" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Marcação objetivo concluído" sap:quickinfo="Código para objetivo empresarial cumprido"/>
+            </EntityType>
+            <EntityType Name="I_MaterialStdVHType" sap:label="Material" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:text="Material_Text" sap:label="Material" sap:quickinfo="Nº do material"/>
+                <Property Name="Material_Text" Type="Edm.String" MaxLength="40" sap:label="Texto breve material" sap:quickinfo="Texto breve de material" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="I_ShippingPointType" sap:label="Local de expedição" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ShippingPoint"/>
+                </Key>
+                <Property Name="ShippingPoint" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="ShippingPoint_Text" sap:label="Local expedição" sap:quickinfo="Local de expedição/ponto de recebimento"/>
+                <Property Name="ShippingPoint_Text" Type="Edm.String" MaxLength="30" sap:label="Descrição" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ActiveDepartureCountry" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="País" sap:quickinfo="País fornecedor (país onde a mercadoria é expedida)"/>
+                <Property Name="AddressID" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Endereço"/>
+                <Property Name="PickingConfirmation" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Conf.retirada" sap:quickinfo="Sujeito a confirmação de retirada"/>
+            </EntityType>
+            <EntityType Name="I_Supplier_VHType" sap:label="Fornecedor" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Supplier"/>
+                </Key>
+                <Property Name="Supplier" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:text="SupplierName" sap:label="Fornecedor" sap:quickinfo="Nº conta do fornecedor"/>
+                <Property Name="SupplierName" Type="Edm.String" MaxLength="35" sap:label="Nome" sap:quickinfo="Nome 1"/>
+                <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Autorização" sap:quickinfo="Grupo autorizações"/>
+                <Property Name="SupplierAccountGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Grupo de contas" sap:quickinfo="Grupo de contas do fornecedor"/>
+                <Property Name="IsBusinessPurposeCompleted" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Objetivo concluído" sap:quickinfo="Código para objetivo empresarial cumprido"/>
+            </EntityType>
+            <EntityType Name="ZQM_C_COA_AMXType" sap:label="Certificado COA" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DeliveryDocument"/>
+                    <PropertyRef Name="DeliveryDocumentItem"/>
+                    <PropertyRef Name="BillingDocument"/>
+                    <PropertyRef Name="BillingDocumentItem"/>
+                    <PropertyRef Name="ManufacturingOrder"/>
+                    <PropertyRef Name="InspectionLot"/>
+                </Key>
+                <Property Name="print_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="visualization_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DeliveryDocument" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Remessa" sap:value-list="standard"/>
+                <Property Name="DeliveryDocumentItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item de remessa"/>
+                <Property Name="BillingDocument" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Doc.faturamento" sap:quickinfo="Documento de faturamento" sap:value-list="standard"/>
+                <Property Name="BillingDocumentItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Item do documento de faturamento"/>
+                <Property Name="ManufacturingOrder" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Ordem" sap:quickinfo="Nº ordem"/>
+                <Property Name="InspectionLot" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="NonNegative" sap:label="Lote de controle" sap:quickinfo="Nº do lote de controle"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:text="DeliveryDocumentItemText" sap:label="Material" sap:quickinfo="Nº do material" sap:value-list="standard"/>
+                <Property Name="DeliveryDocumentItemText" Type="Edm.String" MaxLength="40" sap:label="Denominação de item" sap:quickinfo="Texto breve do item da ordem do cliente"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Centro" sap:value-list="standard"/>
+                <Property Name="Batch" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Lote" sap:quickinfo="Número do lote"/>
+                <Property Name="ReferenceSDDocument" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Documento referência" sap:quickinfo="Nº documento do documento de referência"/>
+                <Property Name="ActualDeliveryQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="DeliveryQuantityUnit" sap:label="Qtd.remessa" sap:quickinfo="Quantidade fornecida de fato, em UMV"/>
+                <Property Name="DeliveryQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Unidade de venda" sap:semantics="unit-of-measure"/>
+                <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Criado em" sap:quickinfo="Data de criação do registro"/>
+                <Property Name="ShippingPoint" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Local expedição" sap:quickinfo="Local de expedição/ponto de recebimento" sap:value-list="standard"/>
+                <Property Name="ShipToParty" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:text="OrganizationBPName1" sap:label="Recebedor mercadoria" sap:value-list="standard"/>
+                <Property Name="OrganizationBPName1" Type="Edm.String" MaxLength="35" sap:label="Nome" sap:quickinfo="Nome 1"/>
+                <Property Name="mhdhb" Type="Edm.Decimal" Precision="4" Scale="0" sap:label="Prazo de validade"/>
+                <Property Name="iprkz" Type="Edm.String" MaxLength="1"/>
+                <Property Name="BR_NotaFiscal" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Nº documento" sap:value-list="standard"/>
+                <Property Name="BR_NFeNumber" Type="Edm.String" MaxLength="9" sap:label="Número de nove dígitos"/>
+                <Property Name="BR_NFSeries" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Série" sap:quickinfo="Série Nota Fiscal"/>
+                <Property Name="NFCreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data" sap:quickinfo="Data de criação do documento"/>
+                <Property Name="NFe" Type="Edm.String" MaxLength="13"/>
+                <Property Name="BR_NFeDocumentStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status doc." sap:quickinfo="Status do documento"/>
+                <Property Name="BR_NFIsCanceled" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Estornado"/>
+                <NavigationProperty Name="to_batch" Relationship="cds_zqmui_coa_amx.assoc_716B1A5C779EE95CB3480BC8C47A163F" FromRole="FromRole_assoc_716B1A5C779EE95CB3480BC8C47A163F" ToRole="ToRole_assoc_716B1A5C779EE95CB3480BC8C47A163F"/>
+            </EntityType>
+            <ComplexType Name="DummyFunctionImportResult">
+                <Property Name="IsInvalid" Type="Edm.Boolean" sap:label="Verdadeiro"/>
+            </ComplexType>
+            <Association Name="assoc_716B1A5C779EE95CB3480BC8C47A163F" sap:content-version="1">
+                <End Type="cds_zqmui_coa_amx.ZQM_C_COA_AMXType" Multiplicity="1" Role="FromRole_assoc_716B1A5C779EE95CB3480BC8C47A163F"/>
+                <End Type="cds_zqmui_coa_amx.I_BatchType" Multiplicity="0..1" Role="ToRole_assoc_716B1A5C779EE95CB3480BC8C47A163F"/>
+            </Association>
+            <EntityContainer Name="cds_zqmui_coa_amx_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="C_ChgMgmtPlantVH" EntityType="cds_zqmui_coa_amx.C_ChgMgmtPlantVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="C_QM_DelivDocVH" EntityType="cds_zqmui_coa_amx.C_QM_DelivDocVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="F_Mmim_Mathlp_Vh" EntityType="cds_zqmui_coa_amx.F_Mmim_Mathlp_VhType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_Batch" EntityType="cds_zqmui_coa_amx.I_BatchType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_BillingDocumentBasicStdVH" EntityType="cds_zqmui_coa_amx.I_BillingDocumentBasicStdVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_BR_NFAdministration_C" EntityType="cds_zqmui_coa_amx.I_BR_NFAdministration_CType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_Customer_VH" EntityType="cds_zqmui_coa_amx.I_Customer_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_MaterialStdVH" EntityType="cds_zqmui_coa_amx.I_MaterialStdVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_ShippingPoint" EntityType="cds_zqmui_coa_amx.I_ShippingPointType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_Supplier_VH" EntityType="cds_zqmui_coa_amx.I_Supplier_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZQM_C_COA_AMX" EntityType="cds_zqmui_coa_amx.ZQM_C_COA_AMXType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_716B1A5C779EE95CB3480BC8C47A163F" Association="cds_zqmui_coa_amx.assoc_716B1A5C779EE95CB3480BC8C47A163F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZQM_C_COA_AMX" Role="FromRole_assoc_716B1A5C779EE95CB3480BC8C47A163F"/>
+                    <End EntitySet="I_Batch" Role="ToRole_assoc_716B1A5C779EE95CB3480BC8C47A163F"/>
+                </AssociationSet>
+                <FunctionImport Name="print" ReturnType="cds_zqmui_coa_amx.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="cds_zqmui_coa_amx.ZQM_C_COA_AMXType" sap:applicable-path="print_ac">
+                    <Parameter Name="DeliveryDocument" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="DeliveryDocumentItem" Type="Edm.String" Mode="In" MaxLength="6"/>
+                    <Parameter Name="BillingDocument" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="BillingDocumentItem" Type="Edm.String" Mode="In" MaxLength="6"/>
+                    <Parameter Name="ManufacturingOrder" Type="Edm.String" Mode="In" MaxLength="12"/>
+                    <Parameter Name="InspectionLot" Type="Edm.String" Mode="In" MaxLength="12"/>
+                </FunctionImport>
+                <FunctionImport Name="visualization" ReturnType="cds_zqmui_coa_amx.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="cds_zqmui_coa_amx.ZQM_C_COA_AMXType" sap:applicable-path="visualization_ac">
+                    <Parameter Name="DeliveryDocument" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="DeliveryDocumentItem" Type="Edm.String" Mode="In" MaxLength="6"/>
+                    <Parameter Name="BillingDocument" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="BillingDocumentItem" Type="Edm.String" Mode="In" MaxLength="6"/>
+                    <Parameter Name="ManufacturingOrder" Type="Edm.String" Mode="In" MaxLength="12"/>
+                    <Parameter Name="InspectionLot" Type="Edm.String" Mode="In" MaxLength="12"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="cds_zqmui_coa_amx.C_QM_DelivDocVHType/ShipToParty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Recebedor mercadoria"/>
+                        <PropertyValue Property="CollectionPath" String="I_Customer_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ShipToParty"/>
+                                    <PropertyValue Property="ValueListProperty" String="Customer"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="OrganizationBPName1"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="OrganizationBPName2"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Country"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CityName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="StreetName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CustomerName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.I_BatchType/Material" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Material"/>
+                        <PropertyValue Property="CollectionPath" String="I_MaterialStdVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Material"/>
+                                    <PropertyValue Property="ValueListProperty" String="Material"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Material_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.I_BatchType/Supplier" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Fornecedor"/>
+                        <PropertyValue Property="CollectionPath" String="I_Supplier_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Supplier"/>
+                                    <PropertyValue Property="ValueListProperty" String="Supplier"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SupplierName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.ZQM_C_COA_AMXType/DeliveryDocument" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Remessa"/>
+                        <PropertyValue Property="CollectionPath" String="C_QM_DelivDocVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="DeliveryDocument"/>
+                                    <PropertyValue Property="ValueListProperty" String="DeliveryDocument"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ShippingPoint"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ShipToParty"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="DeliveryDate"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.ZQM_C_COA_AMXType/BillingDocument" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Doc.faturamento"/>
+                        <PropertyValue Property="CollectionPath" String="I_BillingDocumentBasicStdVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="BillingDocument"/>
+                                    <PropertyValue Property="ValueListProperty" String="BillingDocument"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.ZQM_C_COA_AMXType/Material" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Material"/>
+                        <PropertyValue Property="CollectionPath" String="F_Mmim_Mathlp_Vh"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Material"/>
+                                    <PropertyValue Property="ValueListProperty" String="Material"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialType"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialGroup"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="AuthorizationGroup"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialIsBatchManaged"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialBaseUnit"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.ZQM_C_COA_AMXType/Plant" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Centro"/>
+                        <PropertyValue Property="CollectionPath" String="C_ChgMgmtPlantVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/>
+                                    <PropertyValue Property="ValueListProperty" String="Plant"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="PlantName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.ZQM_C_COA_AMXType/ShippingPoint" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Local expedição"/>
+                        <PropertyValue Property="CollectionPath" String="I_ShippingPoint"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ShippingPoint"/>
+                                    <PropertyValue Property="ValueListProperty" String="ShippingPoint"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ShippingPoint_Text"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ActiveDepartureCountry"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="AddressID"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="PickingConfirmation"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.ZQM_C_COA_AMXType/ShipToParty" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Recebedor mercadoria"/>
+                        <PropertyValue Property="CollectionPath" String="I_Customer_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ShipToParty"/>
+                                    <PropertyValue Property="ValueListProperty" String="Customer"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="OrganizationBPName1"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="OrganizationBPName2"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Country"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CityName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="StreetName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CustomerName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.ZQM_C_COA_AMXType/BR_NotaFiscal" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Nº documento"/>
+                        <PropertyValue Property="CollectionPath" String="I_BR_NFAdministration_C"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="BR_NotaFiscal"/>
+                                    <PropertyValue Property="ValueListProperty" String="BR_NotaFiscal"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CreatedByUser"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CreationDate"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CreationTime"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="LogicalSystem"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="LastChangedByUser"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="LastChangeDate"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="LastChangeTime"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFIsPrinted"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFIsCreatedManually"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFIsCanceled"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFIsChargingInvoice"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFDirection"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFType"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFTypeDesc"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFModel"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFSituationCode"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFIssuedBy"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFReferenceDocument"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="BR_NFHasFollowOnDocument"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.cds_zqmui_coa_amx_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zqmui_coa_amx.cds_zqmui_coa_amx_Entities/ZQM_C_COA_AMX" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>print_ac</PropertyPath>
+                                <PropertyPath>visualization_ac</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>print_ac</PropertyPath>
+                                <PropertyPath>visualization_ac</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://appdesenv.valgroupco.com/sap/opu/odata/sap/ZQMUI_COA_AMX_O2/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://appdesenv.valgroupco.com/sap/opu/odata/sap/ZQMUI_COA_AMX_O2/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

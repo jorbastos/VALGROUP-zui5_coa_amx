@@ -1,0 +1,33 @@
+{
+  "generationParameters": {
+    "generationDate": "Thu Sep 11 2025 11:45:36 GMT-0300 (Brasilia Standard Time)",
+    "generatorPlatform": "Visual Studio Code",
+    "serviceType": "SAP System (ABAP On Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "https://appdesenv.valgroupco.com/sap/opu/odata/sap/ZQMUI_COA_AMX_O2",
+    "appName": "zui5_coa_amx",
+    "appTitle": "Impressão de COA",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "valgroup.com",
+    "ui5Theme": "sap_fiori_3",
+    "ui5Version": "1.84.7",
+    "enableCodeAssist": false,
+    "enableEslint": false,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.18.0",
+    "template": "List Report Page V2",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "ZQM_C_COA_AMX"
+      },
+      {
+        "type": "Navigation Entity",
+        "value": "None"
+      }
+    ],
+    "launchText": "In order to launch the generated app, simply run the following from the generated app root folder:\n\n```\n    npm start\n```"
+  }
+}
