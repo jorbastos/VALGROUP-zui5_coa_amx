@@ -14,7 +14,8 @@ sap.ui.define([
     "sap/ui/core/IconPool",
     "sap/m/Bar",
     "sap/m/Title",
-    "sap/ui/core/library"
+    "sap/ui/core/library",
+    "sap/m/Input",
 ], function (
     MessageToast,
     Message,
@@ -31,11 +32,37 @@ sap.ui.define([
     IconPool,
     Bar,
     Title,
-    coreLibrary
+    coreLibrary,
+    Input,
 ) {
     'use strict';
 
     return {
+
+        onInit: function () {
+            this.addCustomToolbarContent();
+        },
+
+        addCustomToolbarContent: function () {
+
+            var oLabel = new Label({
+                text: this.getResourceBundle().getText("email"),
+            });
+
+            var oInput = new Input({
+                id: "InputEmail",
+                width: "200px",
+            });
+
+            // Pega a toolbar da tabela
+            let oToolbar = this.getView().byId(this.getView().getId() + '--listReport').getToolbar();
+
+            if (oToolbar) {
+                // Adiciona à toolbar
+                oToolbar.addContent(oLabel);
+                oToolbar.addContent(oInput);
+            }
+        },
 
         printCOA: function (oEvent) {
             let that = this,
@@ -51,7 +78,7 @@ sap.ui.define([
                     "BillingDocumentItem": sObjCOA.BillingDocumentItem,
                     "ManufacturingOrder": sObjCOA.ManufacturingOrder,
                     "InspectionLot": sObjCOA.InspectionLot,
-                    //"email": "jorge.bastos@numenit.com"
+                    "email": this.getView().byId(this.getView().getId() + '--listReport').getToolbar().getContent()[4].getValue()
                 };
 
             this.getView().setBusy(true);
@@ -65,8 +92,10 @@ sap.ui.define([
 
                 }.bind(this),
                 error: function (oError) {
-                    MessageToast.show("Erro ao gerar o relatório.");
                     that.getView().setBusy(false);
+                    var oErro = JSON.parse(oError.responseText);
+                    oErro = oErro.error.message.value;
+                    MessageBox.error(oErro);
                 }.bind(this)
             });
         },
