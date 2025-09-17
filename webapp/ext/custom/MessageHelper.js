@@ -9,8 +9,7 @@ sap.ui.define([
   "sap/ui/core/IconPool",
   "sap/m/Bar",
   "sap/m/Title",
-  "sap/ui/core/library",
-  "sap/ui/core/Component"
+  "sap/ui/core/library"
 ],
   function (
     MessageToast,
@@ -24,34 +23,16 @@ sap.ui.define([
     Bar,
     Title,
     coreLibrary,
-    Component
   ) {
     "use strict";
 
     return {
 
-      getI18nBundle: function () {
-
-        var aComponents = Component.registry && Component.registry.all();
-        if (aComponents) {
-          var aKeys = Object.keys(aComponents);
-          for (var i = 0; i < aKeys.length; i++) {
-            var oComponent = aComponents[aKeys[i]];
-            if (oComponent.sId == 'application-app-preview-component' ||
-                oComponent.sId.includes('zui5coaamx') ) {
-              return oComponent.getModel("i18n").getResourceBundle();
-            }
-          }
-        }
-        return null;
-
-      },
-
-      showMessages: function (pResponse) {
+      showMessages: function (pResponse, pModeli18n) {
 
         var that = this,
           tableMessage = [],
-          i18nTexts = this.getI18nBundle(),
+          i18nTexts = pModeli18n.getResourceBundle(),
           oModelMessage = new JSONModel(),
           oMessage = JSON.parse(pResponse.headers["sap-message"]);
 

@@ -14,7 +14,42 @@ sap.ui.define([
     return {
 
         onInit: function () {
+            this.attachEventsToTable();
             this.addCustomToolbarContent();
+        },
+
+        attachEventsToTable: function () {
+            let oTable = this.getView().byId(this.getView().getId() + '--listReport').getTable(),
+                oPlugin = oTable.getPlugins()[0];
+
+            if (oPlugin) {
+                oPlugin.attachSelectionChange(this.onRowSelectionChange, this);
+            }
+        },
+
+        onRowSelectionChange: function (oEvent) {
+            var sLabelBlocked,
+                sInputEnabled,
+                oToolbarContent = this.getView().byId(this.getView().getId() + '--listReport').getToolbar().getContent();
+
+            if (this.extensionAPI.getSelectedContexts()) {
+                if (this.extensionAPI.getSelectedContexts().length > 0) {
+                    sLabelBlocked = false,
+                        sInputEnabled = true;
+                } else {
+                    sLabelBlocked = true;
+                    sInputEnabled = false;
+                }
+            }
+
+            for (var i = 0; i < oToolbarContent.length; i++) {
+                if (oToolbarContent[i].sId == 'LabelEmail') {
+                    oToolbarContent[i].setBlocked(sLabelBlocked);
+                }
+                if (oToolbarContent[i].sId == 'InputEmail') {
+                    oToolbarContent[i].setEnabled(sInputEnabled);
+                }
+            }
         },
 
         getResourceBundle: function () {
@@ -24,12 +59,17 @@ sap.ui.define([
         addCustomToolbarContent: function () {
 
             var oLabel = new Label({
+                id: "LabelEmail",
                 text: this.getResourceBundle().getText("email"),
+                blocked: true
             });
 
             var oInput = new Input({
                 id: "InputEmail",
                 width: "200px",
+                type: "Email",
+                showSuggestion: true,
+                enabled: false,
             });
 
             // Pega a toolbar da tabela
@@ -45,6 +85,7 @@ sap.ui.define([
         printCOA: function (oEvent) {
             let that = this,
                 oModel = this.getOwnerComponent().getModel(),
+                oModeli18n = this.getOwnerComponent().getModel("i18n"),
                 oContextSelected = this.extensionAPI.getSelectedContexts(),
                 sPath = oContextSelected[0].getPath(),
                 sObjCOA = oModel.getProperty(sPath),
@@ -66,7 +107,7 @@ sap.ui.define([
                 urlParameters: oKeys,
                 success: function (oData, oResponse) {
                     that.getView().setBusy(false);
-                    MessageHelper.showMessages(oResponse);
+                    MessageHelper.showMessages(oResponse, oModeli18n);
 
                 }.bind(this),
                 error: function (oError) {
