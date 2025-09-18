@@ -34,11 +34,10 @@ sap.ui.define([
 
             if (this.extensionAPI.getSelectedContexts()) {
                 if (this.extensionAPI.getSelectedContexts().length > 0) {
-                    sLabelBlocked = false,
-                        sInputEnabled = true;
-                } else {
-                    sLabelBlocked = true;
-                    sInputEnabled = false;
+                    sLabelBlocked = false, sInputEnabled = true;
+                }
+                else {
+                    sLabelBlocked = true; sInputEnabled = false;
                 }
             }
 
@@ -90,15 +89,23 @@ sap.ui.define([
                 sPath = oContextSelected[0].getPath(),
                 sObjCOA = oModel.getProperty(sPath),
                 sRequest = '/print',
-                oKeys = {
-                    "DeliveryDocument": sObjCOA.DeliveryDocument,
-                    "DeliveryDocumentItem": sObjCOA.DeliveryDocumentItem,
-                    "BillingDocument": sObjCOA.BillingDocument,
-                    "BillingDocumentItem": sObjCOA.BillingDocumentItem,
-                    "ManufacturingOrder": sObjCOA.ManufacturingOrder,
-                    "InspectionLot": sObjCOA.InspectionLot,
-                    "email": this.getView().byId(this.getView().getId() + '--listReport').getToolbar().getContent()[4].getValue()
-                };
+                oToolbarContent = this.getView().byId(this.getView().getId() + '--listReport').getToolbar().getContent();
+
+            for (var i = 0; i < oToolbarContent.length; i++) {
+                if (oToolbarContent[i].sId == 'InputEmail') {
+                    var sEmail = oToolbarContent[i].getValue();
+                }
+            }
+
+            let oKeys = {
+                "DeliveryDocument": sObjCOA.DeliveryDocument,
+                "DeliveryDocumentItem": sObjCOA.DeliveryDocumentItem,
+                "BillingDocument": sObjCOA.BillingDocument,
+                "BillingDocumentItem": sObjCOA.BillingDocumentItem,
+                "ManufacturingOrder": sObjCOA.ManufacturingOrder,
+                "InspectionLot": sObjCOA.InspectionLot,
+                "email": sEmail
+            };
 
             this.getView().setBusy(true);
 
