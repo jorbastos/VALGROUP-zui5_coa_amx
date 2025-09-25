@@ -235,6 +235,7 @@
                     <Parameter Name="BillingDocumentItem" Type="Edm.String" Mode="In" MaxLength="6"/>
                     <Parameter Name="ManufacturingOrder" Type="Edm.String" Mode="In" MaxLength="12"/>
                     <Parameter Name="InspectionLot" Type="Edm.String" Mode="In" MaxLength="12"/>
+                    <Parameter Name="email" Type="Edm.String" Mode="In" MaxLength="241" Nullable="true"/>
                 </FunctionImport>
                 <FunctionImport Name="visualization" ReturnType="cds_zqmui_coa_amx.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="cds_zqmui_coa_amx.ZQM_C_COA_AMXType" sap:applicable-path="visualization_ac">
                     <Parameter Name="DeliveryDocument" Type="Edm.String" Mode="In" MaxLength="10"/>

@@ -176,10 +176,20 @@
                                     <PropertyValue Property="Property" PropertyPath="BillingDocumentItem"/>
                                     <PropertyValue Property="Descending" Bool="false"/>
                                 </Record>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="ManufacturingOrder"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="InspectionLot"/>
+                                    <PropertyValue Property="Descending" Bool="false"/>
+                                </Record>
                             </Collection>
                         </PropertyValue>
                         <PropertyValue Property="RequestAtLeast">
                             <Collection>
+                                <PropertyPath>InspectionLot</PropertyPath>
+                                <PropertyPath>ManufacturingOrder</PropertyPath>
                                 <PropertyPath>BillingDocumentItem</PropertyPath>
                                 <PropertyPath>BillingDocument</PropertyPath>
                                 <PropertyPath>DeliveryDocumentItem</PropertyPath>
