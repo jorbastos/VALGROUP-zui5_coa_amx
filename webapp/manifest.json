@@ -160,15 +160,6 @@
                             "type": "GridTable"
                         }
                     }
-                },
-                "pages": {
-                    "ObjectPage|ZQM_C_COA_AMX": {
-                        "entitySet": "ZQM_C_COA_AMX",
-                        "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
-                        "component": {
-                            "name": "sap.suite.ui.generic.template.ObjectPage"
-                        }
-                    }
                 }
             }
         }
