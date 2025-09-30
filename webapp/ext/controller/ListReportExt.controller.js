@@ -103,7 +103,7 @@ sap.ui.define([
                 "BillingDocument": sObjCOA.BillingDocument,
                 "BillingDocumentItem": sObjCOA.BillingDocumentItem,
                 "ManufacturingOrder": sObjCOA.ManufacturingOrder,
-                "InspectionLot": sObjCOA.InspectionLot,
+                //"InspectionLot": sObjCOA.InspectionLot,
                 "email": sEmail
             };
 
