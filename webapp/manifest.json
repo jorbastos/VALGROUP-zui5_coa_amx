@@ -121,7 +121,7 @@
                 "Actions": {
                   "printCOA": {
                     "id": "printCOAButton",
-                    "text": "Imprimir",
+                    "text": "{i18n>printCOAButtonText}",
                     "press": "printCOA",
                     "requiresSelection": true
                   }

@@ -72,13 +72,20 @@ sap.ui.define([
             });
 
             // Pega a toolbar da tabela
-            let oToolbar = this.getView().byId(this.getView().getId() + '--listReport').getToolbar();
+            let oToolbar = this.getView().byId(this.getView().getId() + '--listReport').getToolbar(),
+                oToolbarContent = oToolbar.getContent();
 
             if (oToolbar) {
                 // Adiciona à toolbar
                 oToolbar.addContent(oLabel);
                 oToolbar.addContent(oInput);
             }
+
+            for (var i = 0; i < oToolbarContent.length; i++) {
+                if (oToolbarContent[i].sId.includes('printCOAButton')) {
+                    oToolbarContent[i].setIcon('sap-icon://pdf-attachment');
+                }
+            }            
         },
 
         printCOA: function (oEvent) {
