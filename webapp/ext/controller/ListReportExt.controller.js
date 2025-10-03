@@ -85,7 +85,7 @@ sap.ui.define([
                 if (oToolbarContent[i].sId.includes('printCOAButton')) {
                     oToolbarContent[i].setIcon('sap-icon://pdf-attachment');
                 }
-            }            
+            }
         },
 
         printCOA: function (oEvent) {
