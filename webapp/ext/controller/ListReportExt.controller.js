@@ -68,7 +68,7 @@ sap.ui.define([
                 width: "200px",
                 type: "Email",
                 showSuggestion: true,
-                enabled: false,
+                enabled: false,            
             });
 
             // Pega a toolbar da tabela
@@ -84,6 +84,16 @@ sap.ui.define([
             for (var i = 0; i < oToolbarContent.length; i++) {
                 if (oToolbarContent[i].sId.includes('printCOAButton')) {
                     oToolbarContent[i].setIcon('sap-icon://pdf-attachment');
+                }
+            }
+        },
+
+        onBeforeRebindTableExtension: function (oEvent) {
+            let oToolbarContent = oEvent.getSource().getToolbar().getContent();
+
+            for (var i = 0; i < oToolbarContent.length; i++) {
+                if (oToolbarContent[i].sId == 'InputEmail') {
+                    var sEmail = oToolbarContent[i].setValue("");
                 }
             }
         },
